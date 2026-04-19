@@ -1,0 +1,37 @@
+name: Build vLLM Image
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 创建 Dockerfile
+      - name: Create Dockerfile
+        run: |
+          cat > Dockerfile << 'EOF'
+          FROM nvidia/cuda:12.1.1-base-ubuntu22.04
+          ENV DEBIAN_FRONTEND=noninteractive
+          RUN apt-get update && apt-get install -y python3-pip
+          RUN pip install vllm==0.19.0
+          EXPOSE 8000
+          ENTRYPOINT ["vllm", "serve"]
+          EOF
+
+      # 构建镜像
+      - name: Build image
+        run: docker build -t vllm:0.19.0 .
+
+      # 打包成 tar
+      - name: Save image
+        run: docker save -o vllm_0.19.0.tar vllm:0.19.0
+
+      # 上传供下载
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vllm-image
+          path: vllm_0.19.0.tar
