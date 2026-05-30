@@ -19,5 +19,5 @@ jobs:
 
       - name: Tag and Push to ACR
         run: |
-          docker tag lmsysorg/sglang:lates crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:sglang
+          docker tag lmsysorg/sglang:latest crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:sglang
           docker push crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:sglang
