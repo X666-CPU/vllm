@@ -19,5 +19,5 @@ jobs:
 
       - name: Tag and Push to ACR
         run: |
-          docker tag vllm/vllm-openai:latest crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:lmdeploy
+          docker tag openmmlab/lmdeploy:latest crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:lmdeploy
           docker push crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:lmdeploy
