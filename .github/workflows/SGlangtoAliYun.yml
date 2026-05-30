@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull sglang image
-        run: docker pull lmsysorg/sglang:lates
+        run: docker pull lmsysorg/sglang:latest
 
       - name: Login to Aliyun ACR
         uses: docker/login-action@v3
