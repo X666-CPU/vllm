@@ -1,4 +1,4 @@
-name: Pull vLLM → Push to Aliyun ACR
+name: Pull lmdeploy → Push to Aliyun ACR
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Pull official vllm image
+      - name: Pull lmdeploy image
         run: docker pull openmmlab/lmdeploy:latest
 
       - name: Login to Aliyun ACR
