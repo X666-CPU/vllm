@@ -7,8 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Pull llama.cpp image
-        run: docker pull ghcr.io/ggerganov/llama.cpp:latest
+      # 拉取带CUDA的server镜像（生产推理首选，支持GPU加速）
+      - name: Pull llama.cpp server-cuda image
+        run: docker pull ghcr.io/ggml-org/llama.cpp:server-cuda
 
       - name: Login to Aliyun ACR
         uses: docker/login-action@v3
@@ -19,5 +20,5 @@ jobs:
 
       - name: Tag and Push to ACR
         run: |
-          docker tag ghcr.io/ggerganov/llama.cpp:latest crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:llama.cpp
-          docker push crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:llama.cpp
+          docker tag ghcr.io/ggml-org/llama.cpp:server-cuda crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:llama.cpp-server-cuda
+          docker push crpi-79o3tt0rozrf74vm.cn-chengdu.personal.cr.aliyuncs.com/momings/mmshare:llama.cpp-server-cuda
